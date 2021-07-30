@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-FootballApplication<football>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.restapi.football.FootballApplication",
+            "projectName": "football",
+            "args": ""
+        }
+    ]
+}
