@@ -14,7 +14,7 @@ public class LoadDatabase {
     private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
     @Bean
-    CommandLineRunner initDatabase(PlayerRepository repository) {
+    CommandLineRunner initPlayerDatabase(PlayerRepository repository) {
 
         return args -> {
             log.info("Preloading " + repository.save(new Player("Luka", "Modric", "Croatia")));
