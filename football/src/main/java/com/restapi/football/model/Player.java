@@ -15,7 +15,7 @@ public class Player {
     private String firstName;
     private String lastName;
     private String team;
-    private Integer goals;
+    private Integer factor;
 
     public Player() { }
 
@@ -23,7 +23,6 @@ public class Player {
         this.firstName = firstName;
         this.lastName = lastName;
         this.team = team;
-        this.goals = 0;
     }
 
     public Long getId() {
@@ -73,10 +72,6 @@ public class Player {
     return this.lastName;
     }
 
-    public void incrementGoals() {
-        goals++;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -103,7 +98,6 @@ public class Player {
             ", firstName='" + this.firstName + "\'" +
             ", lastName='" + this.lastName + "\'" +
             ", team='" + this.team + "\'" +
-            ", goals=" + this.goals + 
             "}";
     }
 }
