@@ -5,6 +5,8 @@ import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Player {
@@ -14,12 +16,16 @@ public class Player {
 
     private String firstName;
     private String lastName;
-    private String team;
+
+    @ManyToOne
+    @JoinColumn(name="teamId")
+    private Team team;
+    
     private Integer factor;
 
     public Player() { }
 
-    public Player(String firstName, String lastName, String team) {
+    public Player(String firstName, String lastName, Team team) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.team = team;
@@ -47,12 +53,12 @@ public class Player {
         this.lastName = parts[1];
     }
 
-    public String getTeam() {
+    public Team getTeam() {
         return team;
     }
 
 
-    public void setTeam(String team) {
+    public void setTeam(Team team) {
         this.team = team;
     }
 
@@ -70,6 +76,14 @@ public class Player {
 
     public String getLastName() {
     return this.lastName;
+    }
+    
+    public Integer getFactor() {
+        return factor;
+    }
+
+    public void setFactor(Integer factor) {
+        this.factor = factor;
     }
 
     @Override
@@ -97,7 +111,7 @@ public class Player {
             "id=" + this.id +
             ", firstName='" + this.firstName + "\'" +
             ", lastName='" + this.lastName + "\'" +
-            ", team='" + this.team + "\'" +
+            ", team=" + this.team +
             "}";
     }
 }

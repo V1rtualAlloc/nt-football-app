@@ -1,13 +1,16 @@
 package com.restapi.football.model;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Game {
@@ -15,21 +18,19 @@ public class Game {
     @GeneratedValue
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "homeTeamId")
     private Team homeTeam;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "awayTeamId")
     private Team awayTeam;
 
-    @ManyToOne
-    @JoinColumn(name = "homeStartersId")
-    private GamePlayer homeStarters;
-    
-    @ManyToOne
-    @JoinColumn(name = "awayStartersId")
-    private GamePlayer awayStarters;
+    @OneToMany(mappedBy = "team")
+    private List<Player> homePlayers;
+
+    @OneToMany(mappedBy = "team")
+    private List<Player> awayPlayers;
     
     @ManyToOne
     @JoinColumn(name = "homeCoachId")
@@ -99,13 +100,13 @@ public class Game {
 
     public Game() { }
 
-    public Game(Team homeTeam, Team awayTeam, GamePlayer homeStarters, GamePlayer awayStarters, Coach homeCoach,
+    public Game(Team homeTeam, Team awayTeam, List<Player> homePlayers, List<Player> awayPlayers, Coach homeCoach,
             Coach awayCoach, Date playedDate, String competition, String stage, Integer attendance,
             Integer homeTeamGoals, Integer awayTeamGoals, Integer homeTeamRank, Integer awayTeamRank) {
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
-        this.homeStarters = homeStarters;
-        this.awayStarters = awayStarters;
+        this.homePlayers = homePlayers;
+        this.awayPlayers = awayPlayers;
         this.homeCoach = homeCoach;
         this.awayCoach = awayCoach;
         this.playedDate = playedDate;
@@ -145,8 +146,8 @@ public class Game {
             ", homeTeam='" + this.homeTeam + "\'" +
             ", awayTeamRank=" + this.awayTeamRank +
             ", awayTeam='" + this.awayTeam + "\'" +
-            ", homeStarters=" + this.homeStarters.toString() +
-            ", awayStarters=" + this.awayStarters.toString() +
+            ", homePlayers=" + this.homePlayers.toString() +
+            ", awayPlayers=" + this.awayPlayers.toString() +
             ", homeCoach=" + this.homeCoach +
             ", awayCoach=" + this.awayCoach +
             ", playedDate=" + this.playedDate + 

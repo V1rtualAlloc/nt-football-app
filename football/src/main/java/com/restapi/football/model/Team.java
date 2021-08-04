@@ -37,6 +37,14 @@ public class Team {
         this.name = name;
     }
     
+    public Integer getFactor() {
+        return factor;
+    }
+
+    public void setFactor(Integer factor) {
+        this.factor = factor;
+    }
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) {
