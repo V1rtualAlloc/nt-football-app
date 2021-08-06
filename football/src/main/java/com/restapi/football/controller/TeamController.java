@@ -36,12 +36,12 @@ public class TeamController {
     @GetMapping("/teams")
     public CollectionModel<EntityModel<Team>> all() {
         
-        List<EntityModel<Team>> players = repository.findAll().stream()
+        List<EntityModel<Team>> teams = repository.findAll().stream()
             .map(assembler::toModel)
             .collect(Collectors.toList());
         
-        return CollectionModel.of(players,
-            WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(PlayerController.class).all()).withSelfRel());
+        return CollectionModel.of(teams,
+            WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(TeamController.class).all()).withSelfRel());
     }
     
     @PostMapping("/teams")
@@ -64,7 +64,7 @@ public class TeamController {
     }
 
     @PutMapping("/teams/{id}")
-    public ResponseEntity<?> replacePlayer(@RequestBody Team newTeam, @PathVariable Long id) {
+    public ResponseEntity<?> replaceTeam(@RequestBody Team newTeam, @PathVariable Long id) {
         
         Team updatedTeam = repository.findById(id)
             .map(team -> {
@@ -85,7 +85,7 @@ public class TeamController {
     }
 
     @DeleteMapping("/teams/{id}")
-    public ResponseEntity<?> deletePlayer(@PathVariable Long id) {
+    public ResponseEntity<?> deleteTeam(@PathVariable Long id) {
         repository.deleteById(id);
 
         return ResponseEntity.noContent().build();

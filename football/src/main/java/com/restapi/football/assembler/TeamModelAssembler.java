@@ -17,6 +17,6 @@ public class TeamModelAssembler implements RepresentationModelAssembler<Team, En
 
         return EntityModel.of(player,
             linkTo(methodOn(TeamController.class).one(player.getId())).withSelfRel(),
-            linkTo(methodOn(TeamController.class).all()).withRel("players"));
+            linkTo(methodOn(TeamController.class).all()).withRel("teams"));
     }
 }
