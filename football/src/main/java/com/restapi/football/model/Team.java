@@ -13,7 +13,6 @@ public class Team {
     private Long id;
 
     private String name;
-    private Integer factor;
 
     public Team() { }
 
@@ -37,14 +36,6 @@ public class Team {
         this.name = name;
     }
     
-    public Integer getFactor() {
-        return factor;
-    }
-
-    public void setFactor(Integer factor) {
-        this.factor = factor;
-    }
-    
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -66,9 +57,9 @@ public class Team {
 
     @Override
     public String toString() {
-        return "Player{" + 
+        return "Team{" + 
             "id=" + this.id +
-            ", team='" + this.name + "\'" +
+            ", name='" + this.name + "\'" +
             "}";
     }
 }

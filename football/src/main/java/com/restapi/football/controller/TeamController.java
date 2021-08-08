@@ -69,7 +69,6 @@ public class TeamController {
         Team updatedTeam = repository.findById(id)
             .map(team -> {
                 team.setName(newTeam.getName());
-                team.setFactor(newTeam.getFactor());
                 return repository.save(team);
             })
             .orElseGet(() -> {
