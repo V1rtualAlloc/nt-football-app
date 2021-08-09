@@ -17,6 +17,6 @@ public class GameModelAssembler implements RepresentationModelAssembler<Game, En
 
         return EntityModel.of(game,
             linkTo(methodOn(GameController.class).one(game.getId())).withSelfRel(),
-            linkTo(methodOn(GameController.class).all()).withRel("game"));
+            linkTo(methodOn(GameController.class).all()).withRel("games"));
     }
 }

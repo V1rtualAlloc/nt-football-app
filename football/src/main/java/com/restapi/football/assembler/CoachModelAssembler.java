@@ -17,6 +17,6 @@ public class CoachModelAssembler implements RepresentationModelAssembler<Coach, 
 
         return EntityModel.of(coach,
             linkTo(methodOn(CoachController.class).one(coach.getId())).withSelfRel(),
-            linkTo(methodOn(CoachController.class).all()).withRel("coach"));
+            linkTo(methodOn(CoachController.class).all()).withRel("coaches"));
     }
 }

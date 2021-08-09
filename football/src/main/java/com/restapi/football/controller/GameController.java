@@ -79,8 +79,6 @@ public class GameController {
                 game.setAwayTeamRank(newGame.getAwayTeamRank());
                 game.setHomeCoach(newGame.getHomeCoach());
                 game.setAwayCoach(newGame.getAwayCoach());
-                // game.setName(newCoach.getName());
-                // player.setTeam(newPlayer.getTeam());
                 return repository.save(game);
             })
             .orElseGet(() -> {
