@@ -1,11 +1,13 @@
 package com.restapi.football.model;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -20,6 +22,12 @@ public class Player {
     @ManyToOne
     @JoinColumn(name="teamId")
     private Team team;
+
+    @ManyToMany(mappedBy="homePlayers")
+    private List<Game> homeGames;
+
+    @ManyToMany(mappedBy="awayPlayers")
+    private List<Game> awayGames;
     
     private Integer factor;
 
@@ -57,10 +65,25 @@ public class Player {
         return team;
     }
 
-
     public void setTeam(Team team) {
         this.team = team;
     }
+
+    // public List<Game> getHomeGames() {
+    //     return homeGames;
+    // }
+
+    // public void setHomeGames(List<Game> homeGames) {
+    //     this.homeGames = homeGames;
+    // }
+
+    // public List<Game> getAwayGames() {
+    //     return awayGames;
+    // }
+
+    // public void setAwayGames(List<Game> awayGames) {
+    //     this.awayGames = awayGames;
+    // }
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -112,6 +135,8 @@ public class Player {
             ", firstName='" + this.firstName + "\'" +
             ", lastName='" + this.lastName + "\'" +
             ", team=" + this.team +
+            // ", homeGames=" + this.homeGames + 
+            // ", awayGames=" + this.awayGames + 
             "}";
     }
 }

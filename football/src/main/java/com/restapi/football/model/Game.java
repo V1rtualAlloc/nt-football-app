@@ -8,8 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Game {
@@ -25,10 +26,16 @@ public class Game {
     @JoinColumn(name = "awayTeamId")
     private Team awayTeam;
 
-    @OneToMany(mappedBy = "team")
+    @ManyToMany
+    @JoinTable(name="Home_Game_Player",
+               joinColumns = @JoinColumn(name="GameId", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name="PlayerId", referencedColumnName = "id"))
     private List<Player> homePlayers;
 
-    @OneToMany(mappedBy = "team")
+    @ManyToMany
+    @JoinTable(name="Away_Game_Player",
+               joinColumns = @JoinColumn(name="GameId", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name="PlayerId", referencedColumnName = "id"))
     private List<Player> awayPlayers;
     
     @ManyToOne

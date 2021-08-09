@@ -70,6 +70,8 @@ public class PlayerController {
             .map(player -> {
                 player.setName(newPlayer.getName());
                 player.setTeam(newPlayer.getTeam());
+                // player.setHomeGames(newPlayer.getHomeGames());
+                // player.setAwayGames(newPlayer.getAwayGames());
                 return repository.save(player);
             })
             .orElseGet(() -> {
